@@ -1,0 +1,3 @@
+---
+providerRegex: ^(am06-1)$
+bypassDnsResolution: true
