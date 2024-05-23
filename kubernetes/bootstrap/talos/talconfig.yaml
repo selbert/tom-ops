@@ -37,7 +37,7 @@ nodes:
         vip:
           ip: "192.168.4.10"
   - hostname: "n100-1"
-    ipAddress: "192.168.4.12"
+    ipAddress: "192.168.4.16"
     installDisk: "/dev/nvme0n1"
     talosImageURL: factory.talos.dev/installer/3a5770fabc88e6b7c5b7f6b1fe5342d29ffe2e789b9af2efde1eb4e1d0d94e9b
     controlPlane: false
@@ -46,7 +46,7 @@ nodes:
           hardwareAddr: "e8:ff:1e:d0:43:e3"
         dhcp: false
         addresses:
-          - "192.168.4.12/24"
+          - "192.168.4.16/24"
         mtu: 1500
         routes:
           - network: 0.0.0.0/0
@@ -98,7 +98,6 @@ patches:
     machine:
       network:
         nameservers:
-          - 192.168.4.1
 
   # Configure NTP
   - |-
