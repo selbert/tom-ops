@@ -21,7 +21,7 @@ spec:
     remediation:
       retries: 3
   values:
-    providerRegex: ^(am06-1|n100-1)$
+    providerRegex: ^(am06-1|am06-2|n100-1)$
     bypassDnsResolution: true
     metrics:
       enable: true
