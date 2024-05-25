@@ -28,10 +28,11 @@ spec:
       enabled: true
       ingressClassName: internal
       url: "plex.${SECRET_DOMAIN}"
-    resources:
-      requests:
-        gpu.intel.com/i915: "1"
-        cpu: "1"
-      limits:
-        gpu.intel.com/i915: "1"
-        memory: "4Gi"
+    pms:
+      resources:
+        requests:
+          gpu.intel.com/i915: "1"
+          cpu: "1"
+        limits:
+          gpu.intel.com/i915: "1"
+          memory: "4Gi"
