@@ -2,23 +2,32 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: gpu-plugin
+  name: nfd
 spec:
   interval: 30m
   chart:
     spec:
-      chart: intel-device-plugins-gpu
-      version: 0.30.0
+      chart: node-feature-discovery
+      version: 0.15.4
       sourceRef:
         kind: HelmRepository
-        name: intel
+        name: nfd
         namespace: flux-system
   install:
+    crds: CreateReplace
     remediation:
       retries: 3
   upgrade:
     cleanupOnFail: true
+    crds: CreateReplace
     remediation:
+      strategy: rollback
       retries: 3
   values:
-    nodeFeatureRule: true
+    worker:
+      config:
+        core:
+          sources: ["pci", "system", "usb"]
+    prometheus:
+      enable: true
+
