@@ -12,7 +12,7 @@ resources:
   - ./jetstack.yaml
   - ./metrics-server.yaml
   - ./openebs.yaml
-  - ./pirateus.yaml
+  - ./piraeus.yaml
   - ./postfinance.yaml
   - ./rook-ceph.yaml
   - ./spegel.yaml
