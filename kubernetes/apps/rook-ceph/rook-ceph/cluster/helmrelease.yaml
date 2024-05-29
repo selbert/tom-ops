@@ -66,6 +66,7 @@ spec:
       storage:
         useAllNodes: true
         useAllDevices: true
+        deviceFilter: sdb
         config:
           osdsPerDevice: "1"
       placement:
