@@ -66,6 +66,7 @@ spec:
       storage:
         useAllNodes: true
         useAllDevices: true
+        deviceFilter: "^/dev/.*"
         config:
           osdsPerDevice: "1"
       placement:
