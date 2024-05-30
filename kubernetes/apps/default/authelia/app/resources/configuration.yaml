@@ -37,7 +37,20 @@ session:
     host: dragonfly.database.svc.cluster.local
 
 notifier:
-  disable_startup_check: true
+  disable_startup_check: false
+  template_path: ''
+  filesystem: {}
+  smtp:
+    host: smtp.gmail.com
+    port: 465
+    timeout: 10s
+    identifier: "${SECRET_DOMAIN}"
+    subject: "[Authelia] {title}"
+    disable_require_tls: false
+    disable_html_emails: false
+    tls:
+      skip_verify: false
+      minimum_version: TLS1.2
 
 totp:
   disable: false
