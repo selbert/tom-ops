@@ -39,8 +39,7 @@ session:
 notifier:
   disable_startup_check: false
   smtp:
-    host: smtp.gmail.com
-    port: 465
+    address: smtp.gmail.com:465
     timeout: 10s
     identifier: "${SECRET_DOMAIN}"
     subject: "[Authelia] {title}"
