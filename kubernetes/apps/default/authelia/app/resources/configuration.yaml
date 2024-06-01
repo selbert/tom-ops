@@ -73,7 +73,7 @@ identity_providers:
       - key_id: 'k4s'
         algorithm: 'RS256'
         use: 'sig'
-        key: '$${AUTHELIA_IDENTITY_PROVIDERS_OIDC_JWKS}'
+        key: '$${TOM_AUTHELIA_IDENTITY_PROVIDERS_OIDC_JWKS}'
     cors:
       endpoints: ["authorization", "token", "revocation", "introspection"]
       allowed_origins_from_client_redirect_uris: true
