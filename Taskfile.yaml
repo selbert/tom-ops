@@ -33,6 +33,9 @@ includes:
   repository:
     aliases: ["repo"]
     taskfile: .taskfiles/Repository/Taskfile.yaml
+  external-secrets:
+    aliases: ["secrets"]
+    taskfile: .taskfiles/ExternalSecrets/Taskfile.yaml
   talos: .taskfiles/Talos/Taskfile.yaml
   sops: .taskfiles/Sops/Taskfile.yaml
   workstation: .taskfiles/Workstation/Taskfile.yaml
