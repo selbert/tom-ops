@@ -145,8 +145,6 @@ patches:
             source: /var/openebs/local
             options: ["bind", "rshared", "rw"]
 
-
-
 controlPlane:
   patches:
     # Cluster configuration
@@ -184,5 +182,3 @@ controlPlane:
             enabled: true
             allowedRoles: ["os:admin"]
             allowedKubernetesNamespaces: ["system-upgrade"]
-
-
