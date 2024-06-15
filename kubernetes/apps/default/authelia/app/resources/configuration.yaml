@@ -39,10 +39,12 @@ session:
 notifier:
   disable_startup_check: true
   smtp:
-    address: smtp.gmail.com:465
-    password: "$${AUTHELIA_NOTIFIER_SMTP_PASSWORD}"
+    host: smtp.gmail.com
+    port: 587
     timeout: 10s
-    identifier: "${SECRET_DOMAIN}"
+    username: "$${AUTHELIA_NOTIFIER_SMTP_USERNAME}"
+    password: "$${AUTHELIA_NOTIFIER_SMTP_PASSWORD}"
+    sender: "Authelia <$${AUTHELIA_NOTIFIER_SMTP_SENDER}>"
     subject: "[Authelia] {title}"
     disable_require_tls: false
     disable_html_emails: false
