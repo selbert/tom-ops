@@ -61,8 +61,6 @@ spec:
           timeoutSeconds: 5
     extraArgs:
       - --ignore-ingress-tls-spec
-      - --ingress-class=internal
-      - --publish-internal-services
     policy: sync
     sources: ["service", "ingress"]
     txtOwnerId: default
