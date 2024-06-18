@@ -61,8 +61,9 @@ spec:
           timeoutSeconds: 5
     extraArgs:
       - --ignore-ingress-tls-spec
+      - --ingress-class=internal
     policy: sync
-    sources: ["service", "ingress", "crd"]
+    sources: ["service", "ingress"]
     txtOwnerId: default
     txtPrefix: k8s.
     domainFilters: ["${SECRET_DOMAIN}"]
