@@ -64,7 +64,7 @@ spec:
       - --ingress-class=internal
       - --publish-internal-services
     policy: sync
-    sources: ["ingress", "service"]
+    sources: ["service", "ingress"]
     txtOwnerId: default
     txtPrefix: k8s.
     domainFilters: ["${SECRET_DOMAIN}"]
