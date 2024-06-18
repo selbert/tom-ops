@@ -62,6 +62,7 @@ spec:
     extraArgs:
       - --ignore-ingress-tls-spec
       - --ingress-class=internal
+      - --publish-internal-services
     policy: sync
     sources: ["ingress", "service"]
     txtOwnerId: default
