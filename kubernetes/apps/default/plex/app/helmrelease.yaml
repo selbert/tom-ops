@@ -31,8 +31,8 @@ spec:
       ingressClassName: external
       url: "https://{{ .Release.Name }}.${SECRET_DOMAIN}"
       annotations:
-        external-dns.alpha.kubernetes.io/target: external.${SECRET_DOMAIN}
-        nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+        "external-dns.alpha.kubernetes.io/target": external.${SECRET_DOMAIN}
+        "nginx.ingress.kubernetes.io/backend-protocol": "HTTPS"
     service:
       type: LoadBalancer
       port: 32400
