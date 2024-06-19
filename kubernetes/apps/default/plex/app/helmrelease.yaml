@@ -3,16 +3,16 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: plex
+  name: &app plex
 spec:
   interval: 30m
   chart:
     spec:
-      chart: app-template
-      version: 3.2.1
+      chart: plex-media-server
+      version: 0.4.0
       sourceRef:
         kind: HelmRepository
-        name: bjw-s
+        name: plex
         namespace: flux-system
   install:
     remediation:
@@ -22,107 +22,55 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
-  dependsOn:
-    - name: intel-device-plugin-gpu
-      namespace: kube-system
-    - name: rook-ceph-cluster
-      namespace: rook-ceph
   values:
-    controllers:
-      plex:
-        annotations:
-          reloader.stakater.com/auto: "true"
-        containers:
-          app:
-            image:
-              repository: ghcr.io/onedr0p/plex
-              tag: 1.40.2.8395-c67dce28e@sha256:3861cc940ecdf97b773fa24d826407cea86559d0f26366d7acd10cef1704f46c
-            env:
-              TZ: Europe/Zurich
-              PLEX_ADVERTISE_URL: https://plex.${SECRET_DOMAIN}:443,http://192.168.4.5:32400
-              PLEX_NO_AUTH_NETWORKS: 192.168.0.0/16
-            probes:
-              liveness: &probes
-                enabled: true
-                custom: true
-                spec:
-                  httpGet:
-                    path: /identity
-                    port: 32400
-                  initialDelaySeconds: 0
-                  periodSeconds: 10
-                  timeoutSeconds: 1
-                  failureThreshold: 3
-              readiness: *probes
-              startup:
-                enabled: true
-                spec:
-                  failureThreshold: 30
-                  periodSeconds: 10
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
-            resources:
-              requests:
-                cpu: 100m
-              limits:
-                gpu.intel.com/i915: 1
-                memory: 16Gi
-    defaultPodOptions:
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 568
-        runAsGroup: 568
-        fsGroup: 568
-        fsGroupChangePolicy: OnRootMismatch
-        supplementalGroups: [44, 10000]
-        seccompProfile: { type: RuntimeDefault }
-      nodeSelector:
-        intel.feature.node.kubernetes.io/gpu: "true"
-    service:
-      app:
-        controller: plex
-        type: LoadBalancer
-        annotations:
-          io.cilium/lb-ipam-ips: 192.168.4.5
-        ports:
-          http:
-            port: 32400
+    fullnameOverride: *app
+    image:
+      repository: plexinc/pms-docker
+      tag: "1.40.3.8555-fef15d30c@sha256-55a784815837ea534c8caf95d586e838e37a608fc2c1017e3295802e7f62c354"
     ingress:
-      app:
-        annotations:
-          external-dns.alpha.kubernetes.io/target: external.${SECRET_DOMAIN}
-          nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-        className: external
-        hosts:
-          - host: "{{ .Release.Name }}.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
-    persistence:
-      config:
-        type: emptyDir
-        globalMounts:
-          - path: /config/Library/Application Support/Plex Media Server
-      cache:
-        type: emptyDir
-        globalMounts:
-          - path: /config/Library/Application Support/Plex Media Server/Cache
-      logs:
-        type: emptyDir
-        globalMounts:
-          - path: /config/Library/Application Support/Plex Media Server/Logs
-      tmp:
-        type: emptyDir
-      transcode:
-        type: emptyDir
-      media:
-        type: nfs
-        server: 192.168.1.5
-        path: /storage/media
-        globalMounts:
-          - path: /media
-            readOnly: true
+      enabled: true
+      ingressClassName: "external"
+      url: "{{ .Release.Name }}.${SECRET_DOMAIN}"
+      annotations:
+        external-dns.alpha.kubernetes.io/target: external.${SECRET_DOMAIN}
+        nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    service:
+      type: LoadBalancer
+      port: 32400
+      annotations:
+        io.cilium/lb-ipam-ips: 192.168.4.5
+    nodeSelector:
+      intel.feature.node.kubernetes.io/gpu: "true"
+    extraEnv:
+      TZ: Europe/Zurich
+      ADVERTISE_IP: https://plex.${SECRET_DOMAIN}:443,http://192.168.4.5:32400
+      ALLOWED_NETWORKS: 192.168.0.0/16
+      PLEX_UID: "1002"
+      PLEX_GID: "1002"
+    pms:
+      storageClassName: ceph-block
+      configStorage: 5Gi
+      resources:
+        requests:
+          gpu.intel.com/i915: 1
+          cpu: 100m
+        limits:
+          memory: 16Gi
+    extraVolumeMounts:
+      - name: media
+        mountPath: /media
+      - name: cache
+        mountPath: /config/Library/Application Support/Plex Media Server/Cache
+      - name: logs
+        mountPath: /config/Library/Application Support/Plex Media Server/Logs
+    extraVolumes:
+      - name: media
+        nfs:
+          server: 192.168.1.5
+          path: /storage/media
+          readOnly: true
+      - name: cache
+        persistentVolumeClaim:
+          claimName: plex-cache
+      - name: logs
+        emptyDir: {}
