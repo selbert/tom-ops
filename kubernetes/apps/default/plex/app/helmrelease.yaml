@@ -48,8 +48,7 @@ spec:
       PLEX_UID: "1002"
       PLEX_GID: "1002"
     pms:
-      storageClassName: ceph-block
-      configStorage: 5Gi
+      configExistingClaim: plex
       resources:
         requests:
           gpu.intel.com/i915: 1
