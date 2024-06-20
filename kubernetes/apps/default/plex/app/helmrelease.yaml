@@ -29,7 +29,7 @@ spec:
     ingress:
       enabled: true
       ingressClassName: external
-      url: https://{{ .Release.Name }}.${SECRET_DOMAIN}
+      url: plex.${SECRET_DOMAIN}
       annotations:
         external-dns.alpha.kubernetes.io/target: external.${SECRET_DOMAIN}
         nginx.ingress.kubernetes.io/backend-protocol: HTTPS
