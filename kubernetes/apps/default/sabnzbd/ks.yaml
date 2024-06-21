@@ -3,7 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app plex
+  name: &app sabnzbd
   namespace: flux-system
 spec:
   targetNamespace: default
@@ -12,7 +12,7 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: external-secrets-stores
-  path: ./kubernetes/apps/default/plex/app
+  path: ./kubernetes/main/apps/default/sabnzbd/app
   prune: true
   sourceRef:
     kind: GitRepository
@@ -24,5 +24,5 @@ spec:
   postBuild:
     substitute:
       APP: *app
-      GATUS_PATH: /web/index.html
-      VOLSYNC_CAPACITY: 30Gi
+      GATUS_SUBDOMAIN: sab
+      VOLSYNC_CAPACITY: 1Gi
