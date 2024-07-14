@@ -24,6 +24,10 @@ spec:
       strategy: rollback
       retries: 3
   values:
+    master:
+      resources:
+        limits:
+          memory: 1Gi
     worker:
       config:
         core:
