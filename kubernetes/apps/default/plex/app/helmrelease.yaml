@@ -26,7 +26,7 @@ spec:
     image:
       repository: plexinc/pms-docker
       # renovate: datasource=docker depName=docker.io/plexinc/pms-docker
-      tag: 1.40.4.8679-424562606
+      tag: 1.40.5.8854-f36c552fd
     ingress:
       enabled: true
       ingressClassName: external
