@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: coder
+  name: flaresolverr
 spec:
   interval: 30m
   chart:
@@ -22,26 +22,16 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
-  dependsOn:
-    - name: rook-ceph-cluster
-      namespace: rook-ceph
   values:
     controllers:
-      coder:
+      flaresolverr:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
           app:
             image:
-              repository: ghcr.io/coder/code-server
-              tag: 4.93.1@sha256:c69e398d1b64589b3b77a7becfd03f4ec524982def20e6bffbb51b1b839e72ba
-            args: [
-              "--auth", "none",
-              "--user-data-dir", "/source/.vscode",
-              "--extensions-dir", "/source/.vscode",
-              "--port", "12321",
-              "/source"
-            ]
+              repository: ghcr.io/flaresolverr/flaresolverr
+              tag: v3.3.21@sha256:f104ee51e5124d83cf3be9b37480649355d223f7d8f9e453d0d5ef06c6e3b31b
             resources:
               requests:
                 cpu: 10m
@@ -56,25 +46,20 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
         seccompProfile: { type: RuntimeDefault }
     service:
-      coder:
-        controller: coder
+      flaresolverr:
+        controller: flaresolverr
         ports:
           http:
-            port: 12321
+            port: 8191
     ingress:
-      code-server:
+      flaresolverr:
         annotations:
           external-dns.alpha.kubernetes.io/target: internal.${SECRET_DOMAIN}
         className: internal
         hosts:
-          - host: coder.${SECRET_DOMAIN}
+          - host: flaresolverr.${SECRET_DOMAIN}
             paths:
               - path: /
                 service:
-                  identifier: coder
+                  identifier: flaresolverr
                   port: http
-    persistence:
-      config:
-        existingClaim: coder
-        globalMounts:
-          - path: /source
