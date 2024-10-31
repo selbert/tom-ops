@@ -119,6 +119,10 @@ spec:
         existingClaim: home-assistant
         globalMounts:
           - path: /config
+      config-z2m:
+        existingClaim: zigbee2mqtt
+        globalMounts:
+          - path: /config/zigbee2mqtt
       logs:
         type: emptyDir
         globalMounts:
