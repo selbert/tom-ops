@@ -26,3 +26,4 @@ resources:
   - ./spegel.yaml
   - ./stakater.yaml
   - ./stevehipwell.yaml
+  - ./vmware-tanzu.yaml
