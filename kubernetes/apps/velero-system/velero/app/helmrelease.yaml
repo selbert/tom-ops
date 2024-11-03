@@ -87,7 +87,6 @@ spec:
     credentials:
       useSecret: true
       existingSecret: velero-secret
-    namespace: velero-system
     schedules:
       default:
         disabled: false
