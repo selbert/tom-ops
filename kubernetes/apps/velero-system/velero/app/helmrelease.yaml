@@ -36,19 +36,7 @@ spec:
       backupStorageLocation:
       - name: default
         provider: aws
-        bucket: default-namespace
-        accessMode: ReadWrite
-        credential:
-          name: velero-secret
-          key: config.env
-        config:
-          region: casa
-          s3ForcePathStyle: true
-          s3Url: http://192.168.1.5:9000
-          insecureSkipTLSVerify: true
-      - name: database
-        provider: aws
-        bucket: database-namespace
+        bucket: velero-backup
         accessMode: ReadWrite
         credential:
           name: velero-secret
@@ -62,19 +50,7 @@ spec:
       volumeSnapshotLocation:
       - name: default
         provider: aws
-        bucket: default-namespace-snapshot
-        accessMode: ReadWrite
-        credential:
-          name: velero-secret
-          key: config.env
-        config:
-          region: casa
-          s3ForcePathStyle: true
-          s3Url: http://192.168.1.5:9000
-          insecureSkipTLSVerify: true
-      - name: database
-        provider: aws
-        bucket: database-namespace-snapshot
+        bucket: velero-snapshot
         accessMode: ReadWrite
         credential:
           name: velero-secret
@@ -95,9 +71,6 @@ spec:
         paused: false
         template:
           ttl: "240h"
-          storageLocation: default
-          volumeSnapshotLocations:
-          - default
           includedNamespaces:
           - default
           includedResources:
@@ -110,9 +83,6 @@ spec:
         paused: false
         template:
           ttl: "240h"
-          storageLocation: database
-          volumeSnapshotLocations:
-          - database
           includedNamespaces:
           - database
           includedResources:
