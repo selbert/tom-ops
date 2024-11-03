@@ -7,7 +7,6 @@ resources:
   - ./externalsecret.yaml
   - ./helmrelease.yaml
   - ../../../../templates/gatus/guarded
-#  - ../../../../templates/volsync
 configMapGenerator:
   - name: zigbee2mqtt-loki-rules
     files:
