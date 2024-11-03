@@ -56,6 +56,7 @@ spec:
         config:
           region: casa
       features: EnableCSI
+    deployNodeAgent: true
     credentials:
       useSecret: true
       existingSecret: velero-secret
