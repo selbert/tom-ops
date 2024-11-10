@@ -4,7 +4,7 @@
 # 1. (Required) Cluster details - Cluster represents the Kubernetes cluster layer and any additional customizations
 #
 
-# (Required) Timezone is your IANA formatted timezone (e.g. America/New_York)
+# (Required) Timezone is your IANA formatted timezone (e.g. Europe/Zurich)
 bootstrap_timezone: ""
 
 # (Required) Distribution can either be k3s or talos
