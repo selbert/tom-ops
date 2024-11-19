@@ -65,6 +65,4 @@ spec:
             port: 8554
     persistence:
       data:
-        enabled: true
-        type: secret
-        name: ring2mqtt-secret
+        existingClaim: zigbee2mqtt
