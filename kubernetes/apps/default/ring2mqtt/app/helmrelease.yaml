@@ -65,4 +65,4 @@ spec:
             port: 8554
     persistence:
       data:
-        existingClaim: zigbee2mqtt
+        existingClaim: ring2mqtt
