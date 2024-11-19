@@ -71,5 +71,5 @@ spec:
     persistence:
       data:
         enabled: true
-        type: ring2mqtt-secret
-        name: mySecret
+        type: secret
+        name: ring2mqtt-secret
