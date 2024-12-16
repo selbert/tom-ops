@@ -25,8 +25,7 @@ spec:
     fullnameOverride: *app
     image:
       repository: plexinc/pms-docker
-      # renovate: datasource=docker depName=docker.io/plexinc/pms-docker
-      tag: 1.41.2.9200-c6bbc1b53
+      tag: 1.41.3.9292-bc7397402 # renovate: datasource=docker depName=docker.io/plexinc/pms-docker
     ingress:
       enabled: true
       ingressClassName: external
