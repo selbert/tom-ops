@@ -64,7 +64,7 @@ spec:
     extraVolumes:
       - name: media
         nfs:
-          server: 192.168.1.5
+          server: 192.168.4.21
           path: /storage/media
           readOnly: true
       - name: cache

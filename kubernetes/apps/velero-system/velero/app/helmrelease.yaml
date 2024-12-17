@@ -44,7 +44,7 @@ spec:
         config:
           region: casa
           s3ForcePathStyle: true
-          s3Url: http://192.168.1.5:9000
+          s3Url: http://192.168.4.21:9000
           insecureSkipTLSVerify: true
 
       volumeSnapshotLocation:
