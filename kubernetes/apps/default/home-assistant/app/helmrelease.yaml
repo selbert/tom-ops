@@ -120,10 +120,6 @@ spec:
                   identifier: code-server
                   port: http
     persistence:
-      config-zb:
-        existingClaim: zigbee2mqtt
-        globalMounts:
-          - path: /config-zigbee
       config:
         existingClaim: home-assistant
         globalMounts:
