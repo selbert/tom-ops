@@ -5,6 +5,7 @@ resources:
   - ./namespace.yaml
   - ./cilium/ks.yaml
   - ./descheduler/ks.yaml
+  - ./fstrim/ks.yaml
   - ./intel-device-plugin/ks.yaml
   - ./kubelet-csr-approver/ks.yaml
   - ./metrics-server/ks.yaml
