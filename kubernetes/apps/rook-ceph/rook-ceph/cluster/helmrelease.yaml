@@ -72,6 +72,9 @@ spec:
         config:
           osdsPerDevice: "1"
       resources:
+        mgr:
+          limits:
+            memory: "2Gi"
         mon:
           requests:
             cpu: "500m"
