@@ -71,25 +71,6 @@ spec:
         useAllDevices: true
         config:
           osdsPerDevice: "1"
-      resources:
-        mon:
-          requests:
-            cpu: "50m"
-        osd:
-          requests:
-            cpu: "400m"
-        mgr-sidecar:
-          requests:
-            cpu: "50m"
-        crashcollector:
-          requests:
-            cpu: "50m"
-        logcollector:
-          requests:
-            cpu: "50m"
-        cleanup:
-          requests:
-            cpu: "200m"
     cephBlockPools:
       - name: ceph-blockpool
         spec:
