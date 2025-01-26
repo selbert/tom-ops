@@ -75,8 +75,6 @@ spec:
         mgr:
           requests:
             cpu: "500m"
-          limits:
-            memory: "3Gi'
         mon:
           requests:
             cpu: "50m"
@@ -99,7 +97,6 @@ spec:
       - name: ceph-blockpool
         spec:
           failureDomain: host
-          enableRBDStats: true
           replicated:
             size: 3
         storageClass:
