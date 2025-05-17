@@ -162,6 +162,13 @@ patches:
 
 controlPlane:
   patches:
+    # fix forbidden error https://github.com/siderolabs/talos/issues/9980
+    - |-
+      cluster:
+        apiServer:
+          extraArgs:
+            feature-gates: AuthorizeNodeWithSelectors=false
+
     # Cluster configuration
     - |-
       cluster:
