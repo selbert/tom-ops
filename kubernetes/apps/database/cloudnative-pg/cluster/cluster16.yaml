@@ -63,3 +63,4 @@ spec:
         barmanObjectStore:
           <<: *barmanObjectStore
           serverName: *previousCluster
+
