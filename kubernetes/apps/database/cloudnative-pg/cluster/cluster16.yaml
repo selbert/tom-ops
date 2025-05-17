@@ -59,7 +59,7 @@ spec:
   #     source: &previousCluster postgres16-v0
   # # Note: externalClusters is needed when recovering from an existing cnpg cluster
   externalClusters:
-    - name: *previousCluster
+    - name: postgres16-v0
       barmanObjectStore:
         <<: *barmanObjectStore
-        serverName: *previousCluster
+        serverName: postgres16-v0
