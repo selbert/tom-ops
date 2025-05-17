@@ -23,7 +23,7 @@ spec:
     reusePVC: true
   resources:
     requests:
-      cpu: 500m
+      cpu: 450m
     limits:
       memory: 4Gi
   monitoring:
@@ -63,3 +63,5 @@ spec:
   #     barmanObjectStore:
   #       <<: *barmanObjectStore
   #       serverName: *previousCluster
+
+
