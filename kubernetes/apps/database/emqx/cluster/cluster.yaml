@@ -13,7 +13,7 @@ spec:
         mechanism = "password_based"
         user_id_type = "username"
         password_hash_algorithm {
-            name = "bcrypt",
+            name = "bcrypt"
         }
       }
       authorization {
