@@ -49,6 +49,8 @@ spec:
       csi:
         readAffinity:
           enabled: true
+        pluginTolerations:
+          - operator: "Exists"
       dashboard:
         enabled: true
         urlPrefix: /

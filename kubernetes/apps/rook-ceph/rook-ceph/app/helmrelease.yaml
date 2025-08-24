@@ -30,7 +30,7 @@ spec:
       serviceMonitor:
         enabled: true
       pluginTolerations:
-      - operator: "Exists"
+        - operator: "Exists"
     enableDiscoveryDaemon: true
     monitoring:
       enabled: true
