@@ -12,6 +12,8 @@ fisher install nickeb96/puffer-fish
 fisher install PatrickF1/fzf.fish
 "
 
+curl https://i.jpillora.com/budimanjojo/talhelper! | sudo bash
+
 # Create/update virtual environment
 if ! grep -q "venv /workspaces/" .venv/pyvenv.cfg; then
     rm -rf .venv
