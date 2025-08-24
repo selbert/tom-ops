@@ -11,19 +11,19 @@ spec:
       authentication {
         backend = "built_in_database"
         mechanism = "password_based"
+        user_id_type = "username"
         password_hash_algorithm {
             name = "bcrypt",
         }
-        user_id_type = "username"
       }
       authorization {
+        no_match = "deny"
         sources = [
           {
             type = built_in_database
             enable = true
           }
         ]
-        no_match: "deny"
       }
   bootstrapAPIKeys:
     - secretRef:
