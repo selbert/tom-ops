@@ -30,7 +30,7 @@ spec:
     monitoring:
       enabled: true
       createPrometheusRules: true
-    route:
+    ingress:
       dashboard:
         ingressClassName: internal
         host:
