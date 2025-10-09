@@ -124,10 +124,6 @@ spec:
         existingClaim: home-assistant
         globalMounts:
           - path: /config
-      ring2mqtt:
-        existingClaim: ring2mqtt
-        globalMounts:
-          - path: /config/ring
       logs:
         type: emptyDir
         globalMounts:
